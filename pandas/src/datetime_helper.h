@@ -14,11 +14,14 @@ The full license is in the LICENSE file, distributed with this software.
 #include "datetime.h"
 #include "numpy/arrayobject.h"
 #include "numpy/arrayscalars.h"
+#include "helper.h"
 
 #if PY_MAJOR_VERSION >= 3
 #define PyInt_AS_LONG PyLong_AsLong
 #endif
 
+
+PANDAS_INLINE
 npy_int64 get_long_attr(PyObject *o, const char *attr) {
   npy_int64 long_val;
   PyObject *value = PyObject_GetAttrString(o, attr);
@@ -28,6 +31,7 @@ npy_int64 get_long_attr(PyObject *o, const char *attr) {
   return long_val;
 }
 
+PANDAS_INLINE
 npy_float64 total_seconds(PyObject *td) {
   // Python 2.6 compat
   npy_int64 microseconds = get_long_attr(td, "microseconds");

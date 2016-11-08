@@ -110,6 +110,7 @@ PANDAS_INLINE PyObject* char_to_string(char* data) {
 #endif
 }
 
+PANDAS_INLINE
 PyObject* sarr_from_data(PyArray_Descr* descr, int length, void* data) {
     PyArrayObject* result;
     npy_intp dims[1] = {length};
@@ -123,6 +124,7 @@ PyObject* sarr_from_data(PyArray_Descr* descr, int length, void* data) {
     return (PyObject*)result;
 }
 
+PANDAS_INLINE
 void transfer_object_column(char* dst, char* src, size_t stride,
                             size_t length) {
     int i;
@@ -140,8 +142,10 @@ void transfer_object_column(char* dst, char* src, size_t stride,
     }
 }
 
+PANDAS_INLINE
 void set_array_owndata(PyArrayObject* ao) { ao->flags |= NPY_OWNDATA; }
 
+PANDAS_INLINE
 void set_array_not_contiguous(PyArrayObject* ao) {
     ao->flags &= ~(NPY_C_CONTIGUOUS | NPY_F_CONTIGUOUS);
 }
